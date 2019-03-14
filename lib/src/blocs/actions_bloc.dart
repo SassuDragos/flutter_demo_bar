@@ -9,7 +9,7 @@ class ActionBloc {
   Observable<List<Action>> get allActions => _actionsFetcher.stream;
 
   fetchAllActions() async {
-    List<Action> actionList = await _dataRepository.fetchAllActions();
+    List<Action> actionList = await _dataRepository.getAllActions();
     _actionsFetcher.sink.add(actionList);
   }
 
