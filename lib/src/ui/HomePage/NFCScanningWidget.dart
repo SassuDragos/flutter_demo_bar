@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:rxdart/rxdart.dart';
 
 class NFCScanningWidget extends StatefulWidget {
-  NFCScanningWidget({Key key, this.tableId}) : super(key: key);
-  final Future<String> tableId;
+  NFCScanningWidget({Key key, this.tableIdStream}) : super(key: key);
+  final Observable<String> tableIdStream;
 
   @override
   State<StatefulWidget> createState() {
@@ -14,15 +15,15 @@ class NFCScanningWidget extends StatefulWidget {
 class NFCScanningWidgetState extends State<NFCScanningWidget> {
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<String>(
-      future: widget.tableId,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
+    return StreamBuilder<String>(
+      stream: widget.tableIdStream,
+      builder: (context, stream) {
+        if (stream.hasData) {
           return Center(
-            child: Text("Table ID: ${widget.tableId}"),
+            child: Text("Table ID: ${stream.data}"),
           );
-        } else if (snapshot.hasError) {
-          return Text("${snapshot.error}");
+        } else if (stream.hasError) {
+          return Text("${stream.error}");
         } else {
           return CircularProgressIndicator();
         }

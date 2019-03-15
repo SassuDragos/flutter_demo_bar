@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/src/blocs/actions_bloc.dart';
 import 'package:flutter_app/src/models/action_model.dart';
 
-class ActionGridWidget extends StatefulWidget {
+class ActionsGridWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return ActionGridWidgetState();
+    return ActionsGridWidgetState();
   }
 }
 
-class ActionGridWidgetState extends State<ActionGridWidget> {
+class ActionsGridWidgetState extends State<ActionsGridWidget> {
   @override
   void initState() {
     super.initState();
@@ -42,7 +42,7 @@ class ActionGridWidgetState extends State<ActionGridWidget> {
     return GridView.builder(
         itemCount: actionList.data.length,
         gridDelegate:
-        new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (BuildContext context, int index) {
           return new GestureDetector(
             child: new Card(
@@ -55,13 +55,14 @@ class ActionGridWidgetState extends State<ActionGridWidget> {
                           height: 40.0,
                           child: Text(
                             actionList.data[index].name,
+                            maxLines: 2,
                             textAlign: TextAlign.center,
                           )),
                       new Expanded(
                           child: Image.network(
-                            actionList.data[index].iconUrl,
-                            fit: BoxFit.scaleDown,
-                          )),
+                        actionList.data[index].iconUrl,
+                        fit: BoxFit.scaleDown,
+                      )),
                     ],
                   )),
             ),
