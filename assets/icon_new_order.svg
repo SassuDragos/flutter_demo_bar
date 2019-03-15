@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>icon_new_order</title>
+    <desc>Created with Sketch.</desc>
+    <g id="icon_new_order" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-2" transform="translate(9.000000, 5.000000)" stroke="#000000" stroke-width="2">
+            <polyline id="Path" stroke-linecap="round" stroke-linejoin="round" points="21.3453388 39.8138816 5.85875 39.8138816 0 0 31.09375 0 28.5 21.8138816"></polyline>
+            <path d="M2.59375,17.8138816 C4.70486111,15.1420867 7.53819444,13.8061893 11.09375,13.8061893 C13.411976,13.8061893 15.8389328,15.1780872 20.09375,16.3138816 C21.607727,16.7180274 24.7743936,17.2180274 29.59375,17.8138816" id="Path-6"></path>
+            <circle id="Oval" cx="27.59375" cy="31.8138816" r="10"></circle>
+            <path d="M27.59375,27.8100354 L27.59375,34.9581939" id="Line" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M27.59375,27.8100354 L27.59375,34.9581939" id="Line" stroke-linecap="round" stroke-linejoin="round" transform="translate(27.593750, 31.313882) rotate(-270.000000) translate(-27.593750, -31.313882) "></path>
+        </g>
+    </g>
+</svg>
