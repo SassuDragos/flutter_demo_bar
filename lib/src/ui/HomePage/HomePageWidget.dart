@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/src/blocs/company_bloc.dart';
 import 'package:flutter_app/src/blocs/orders_bloc.dart';
 import 'package:flutter_app/src/models/company_info_model.dart';
-import 'package:flutter_app/src/ui/HomePage/ActionsGridView.dart';
+import 'package:flutter_app/src/ui/HomePage/ActionsGridWidget.dart';
 import 'package:flutter_app/src/ui/HomePage/NFCScanningWidget.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({Key key, this.title}) : super(key: key);
+class HomePageWidget extends StatefulWidget {
+  HomePageWidget({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _HomePageWidgetState createState() => _HomePageWidgetState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageWidgetState extends State<HomePageWidget> {
   Future<String> tableId;
 
   @override
@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                                   image: new NetworkImage(
                                       snapshot?.data?.iconUrl))),
                         )),
-                Expanded(child: ActionGrid()),
+                Expanded(child: ActionGridWidget()),
               ],
             )));
   }

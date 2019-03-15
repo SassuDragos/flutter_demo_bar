@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/src/blocs/actions_bloc.dart';
 import 'package:flutter_app/src/models/action_model.dart';
 
-class ActionGrid extends StatefulWidget {
+class ActionGridWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return ActionGridState();
+    return ActionGridWidgetState();
   }
 }
 
-class ActionGridState extends State<ActionGrid> {
+class ActionGridWidgetState extends State<ActionGridWidget> {
   @override
   void initState() {
     super.initState();
