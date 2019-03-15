@@ -45,7 +45,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             child: Column(
               children: <Widget>[
                 //TODO: Comment this to have the NFC
-//                new NFCScanningWidget(),
+//                NFCScanningWidget(tableId: tableId),
                 StreamBuilder(
                     stream: companyBloc.companyInfoStream,
                     builder: (BuildContext context,
