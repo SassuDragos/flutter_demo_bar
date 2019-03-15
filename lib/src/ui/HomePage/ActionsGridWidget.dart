@@ -57,13 +57,14 @@ class ActionsGridWidgetState extends State<ActionsGridWidget> {
                       child: new Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
-                          Image.asset(getIconForActionType(
+                          Icon(getIconForActionType(
                               actionList.data[index].actionType)),
                           Container(
                               height: 40.0,
                               child: Center(
                                   child: Text(
-                                actionList.data[index].name,
+                                textFromActionType(
+                                    actionList.data[index].actionType),
                                 style: TextStyle(
                                     fontSize: 12,
                                     letterSpacing: 0.3,
@@ -96,9 +97,17 @@ class ActionsGridWidgetState extends State<ActionsGridWidget> {
     }
   }
 
-  String getIconForActionType(ActionTypes type) {
-    return 'assets/images/lake.jpg';
-
+  IconData getIconForActionType(ActionTypes type) {
+    switch (type) {
+      case ActionTypes.offer_1:
+        return Icons.local_offer;
+      case ActionTypes.check:
+        return Icons.payment;
+      case ActionTypes.one_more:
+        return Icons.more;
+      case ActionTypes.surprise:
+        return Icons.card_giftcard;
+    }
     //    switch (type) {
 //      case ActionTypes.offer_1:
 //      case ActionTypes.offer_2:

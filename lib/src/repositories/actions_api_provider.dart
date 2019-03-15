@@ -24,7 +24,7 @@ class ActionsApiProvider {
   Future<bool> sendAction(String tableId, String name) async {
     final response = await client.post("https://fcm.googleapis.com/fcm/send",
         headers: {"Content-Type": "application/json", "Authorization": "key=AIzaSyDjmUcvCWHanjWq09EW514Z5NqHqYDREI8"},
-        body: "{ \"to\": \"/topics/general\", \"message\": { \"notification\": { \"body\": \"Hello dude!\" }, \"data\": { \"tableId\": \""+tableId+"\", \"name\": \""+name+"\" } } }"
+        body: "{ \"to\": \"/topics/general\", \"notification\": { \"body\": \""+tableId+"%"+name+"\" } }"
     );
     if (response.statusCode == 200) {
       return true;
