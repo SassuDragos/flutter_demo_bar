@@ -13,4 +13,7 @@ class DataRepository {
   Future<List<Action>> getAllActions() =>
       actionsApiProvider.fetchActionList();
 
+  Future<bool> sendAction(String tableId, String name) =>
+      actionsApiProvider.sendAction(tableId, name);
+
 }
