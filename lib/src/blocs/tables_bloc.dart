@@ -1,9 +1,11 @@
 import 'package:flutter/services.dart';
+import 'package:flutter_app/src/repositories/data_repository.dart';
 import 'package:rxdart/rxdart.dart';
 
 import 'package:rxdart/subjects.dart';
 
 class TablesBloc {
+  final _dataRepository = DataRepository();
   static const platform = MethodChannel('app.channel.shared.tableId');
   final _tableIdFetcher = ReplaySubject<String>(maxSize: 1);
 
@@ -36,6 +38,11 @@ class TablesBloc {
 
   dispose() {
     _tableIdFetcher.close();
+  }
+
+  sentTableRequest(String actionName) {
+    var tableId = _tableIdFetcher.values.last;
+    _dataRepository.sendAction(tableId, actionName);
   }
 }
 

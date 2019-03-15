@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/blocs/actions_bloc.dart';
+import 'package:flutter_app/src/blocs/tables_bloc.dart';
 import 'package:flutter_app/src/models/action_model.dart';
 import 'package:flutter_app/src/utils.dart';
 
@@ -56,8 +57,7 @@ class ActionsGridWidgetState extends State<ActionsGridWidget> {
                       child: new Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
-                          Image.asset(
-                              getIconForActionType(
+                          Image.asset(getIconForActionType(
                               actionList.data[index].actionType)),
                           Container(
                               height: 40.0,
@@ -75,8 +75,25 @@ class ActionsGridWidgetState extends State<ActionsGridWidget> {
                         ],
                       )),
                 )),
+            onTap: () {
+              tablesBloc.sentTableRequest(
+                  textFromActionType(actionList.data[index].actionType));
+            },
           );
         });
+  }
+
+  String textFromActionType(ActionTypes action) {
+    switch (action) {
+      case ActionTypes.offer_1:
+        return "Tuborg offer 3+1";
+      case ActionTypes.check:
+        return "Check please";
+      case ActionTypes.one_more:
+        return "One more round";
+      case ActionTypes.surprise:
+        return "Surprise me!";
+    }
   }
 
   String getIconForActionType(ActionTypes type) {
@@ -94,6 +111,5 @@ class ActionsGridWidgetState extends State<ActionsGridWidget> {
 //        return Icons.check;
 //      case ActionTypes.surprise:
 //        return Icons.check;
-    }
   }
 }

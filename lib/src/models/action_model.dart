@@ -10,20 +10,15 @@ class Action {
     _name = parsedJson['name'];
     _type = actionTypeFromString(parsedJson['type']);
   }
-
   ActionTypes actionTypeFromString(String actionTypeString) {
     switch (actionTypeString) {
-      case "offer_1":
+      case "Tuborg offer 3+1":
         return ActionTypes.offer_1;
-      case "offer_2":
-        return ActionTypes.offer_2;
-      case "offer_3":
-        return ActionTypes.offer_3;
-      case "check":
+      case "Check please":
         return ActionTypes.check;
-      case "one_more":
+      case "One more round":
         return ActionTypes.one_more;
-      case "surprise":
+      case "Surprise me!":
         return ActionTypes.surprise;
     }
   }
@@ -39,8 +34,6 @@ class Action {
 
 enum ActionTypes {
   offer_1,
-  offer_2,
-  offer_3,
   check,
   one_more,
   surprise,
