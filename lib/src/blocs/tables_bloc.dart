@@ -8,6 +8,7 @@ class TablesBloc {
   final _tableIdFetcher = ReplaySubject<String>(maxSize: 1);
 
   TablesBloc() {
+    _tableIdFetcher.sink.add(null);
     platform.setMethodCallHandler((MethodCall call) {
       if(call.method == "notifyNewTableId") {
         String tableId = call.arguments[0];
@@ -23,7 +24,6 @@ class TablesBloc {
 
   Future<Observable<String>> scanTableId() async {
     var tableId = await platform.invokeMethod("getTableId") as String;
-//    var tableId = await getFakeTableId();
     if (!_tableIdFetcher.values.contains(tableId)) {
       _tableIdFetcher.sink.add(tableId);
     }

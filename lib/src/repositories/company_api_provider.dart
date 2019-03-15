@@ -12,7 +12,7 @@ class CompanyApiProvider {
     if (response.statusCode == 200) {
       return CompanyInfo.fromJson(jsonDecode(response.body));
     } else {
-      throw Exception('Failed to load action list.');
+      throw Exception('Failed to load company information.');
     }
   }
 }

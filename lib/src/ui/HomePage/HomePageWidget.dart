@@ -3,8 +3,7 @@ import 'package:flutter_app/src/blocs/company_bloc.dart';
 import 'package:flutter_app/src/blocs/tables_bloc.dart';
 import 'package:flutter_app/src/models/company_info_model.dart';
 import 'package:flutter_app/src/ui/HomePage/ActionsGridWidget.dart';
-import 'package:flutter_app/src/ui/HomePage/NFCScanningWidget.dart';
-import 'package:rxdart/rxdart.dart';
+import 'package:progress_indicators/progress_indicators.dart';
 
 class HomePageWidget extends StatefulWidget {
   HomePageWidget({Key key, this.title}) : super(key: key);
@@ -16,15 +15,7 @@ class HomePageWidget extends StatefulWidget {
 }
 
 class _HomePageWidgetState extends State<HomePageWidget> {
-  Observable<String> tableId;
-
-  @override
-  void initState() {
-    super.initState();
-    //TODO: Comment this to have the NFC
-    tableId = tablesBloc.tableIdStream;
-    tablesBloc.scanTableId();
-  }
+  String tableId;
 
   @override
   void dispose() {
@@ -44,7 +35,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         )),
         body: Padding(
           padding: EdgeInsets.all(16.0),
-          child: _getActiveWidgets(tableId != null),
+          child: StreamBuilder(
+            stream: tablesBloc.tableIdStream,
+            builder:
+                (BuildContext context, AsyncSnapshot<String> tableIdSnapshot) =>
+                    _getActiveWidgets(tableIdSnapshot.data != null),
+          ),
         ));
   }
 
@@ -52,33 +48,41 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     if (hasScannedTable) {
       return Column(
         children: <Widget>[
-          //TODO: Comment this to have the NFC
-          NFCScanningWidget(tableIdStream: tableId),
+          //NFCScanningWidget(tableIdStream: tablesBloc.tableIdStream),
           StreamBuilder(
-              stream: companyBloc.companyInfoStream,
-              builder: (BuildContext context,
-                      AsyncSnapshot<CompanyInfo> snapshot) =>
-                  new Container(
-                    width: 100.0,
-                    height: 100.0,
-                    decoration: new BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: new DecorationImage(
-                            fit: BoxFit.fill,
-                            image: new NetworkImage(snapshot?.data?.iconUrl))),
-                  )),
+            stream: companyBloc.companyInfoStream,
+            builder: (context, stream) {
+              if (stream.hasData) {
+                return new Container(
+                  width: 100.0,
+                  height: 100.0,
+                  decoration: new BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: new DecorationImage(
+                          fit: BoxFit.fill,
+                          image: new NetworkImage(stream?.data?.iconUrl))),
+                );
+              } else if (stream.hasError) {
+                return Text("${stream.error}");
+              } else {
+                return CircularProgressIndicator();
+              }
+            },
+          ),
           Expanded(child: ActionsGridWidget()),
         ],
       );
     } else {
       return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text("Scan an NFC tag in your favorite bar and you'll be surprised"),
-          RaisedButton(
-            onPressed: () {
-              tablesBloc.scanTableId();
-            },
-            child: const Text('Scan'),
+          Text(
+            "Scan an NFC tag in your favorite bar and you'll be surprised",
+            textAlign: TextAlign.center,
+          ),
+          Padding(padding: EdgeInsets.all(10.0)),
+          HeartbeatProgressIndicator(
+            child: Icon(Icons.nfc),
           ),
         ],
       );
