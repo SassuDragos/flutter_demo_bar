@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/ui/HomePage.dart';
+import 'package:flutter_app/src/ui/HomePage/HomePage.dart';
 
 class FlutterBarApp extends StatelessWidget {
   // This widget is the root of your application.
