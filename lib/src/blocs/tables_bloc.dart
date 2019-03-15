@@ -7,6 +7,18 @@ class TablesBloc {
   static const platform = MethodChannel('app.channel.shared.tableId');
   final _tableIdFetcher = ReplaySubject<String>(maxSize: 1);
 
+  TablesBloc() {
+    platform.setMethodCallHandler((MethodCall call) {
+      if(call.method == "notifyNewTableId") {
+        String tableId = call.arguments[0];
+        if (!_tableIdFetcher.values.contains(tableId)) {
+          _tableIdFetcher.sink.add(tableId);
+        }
+        return null;
+      }
+    });
+  }
+
   Observable<String> get tableIdStream => _tableIdFetcher.stream;
 
   Future<Observable<String>> scanTableId() async {
