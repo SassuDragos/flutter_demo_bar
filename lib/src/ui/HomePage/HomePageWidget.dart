@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/src/blocs/company_bloc.dart';
 import 'package:flutter_app/src/blocs/tables_bloc.dart';
 import 'package:flutter_app/src/models/company_info_model.dart';
+import 'package:flutter_app/src/repositories/data_repository.dart';
 import 'package:flutter_app/src/ui/HomePage/ActionsGridWidget.dart';
+import 'package:flutter_app/src/ui/HomePage/NFCScanningWidget.dart';
+import 'package:path/path.dart';
+import 'package:http/http.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:progress_indicators/progress_indicators.dart';
+
 
 class HomePageWidget extends StatefulWidget {
   HomePageWidget({Key key, this.title}) : super(key: key);
